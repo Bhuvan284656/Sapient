@@ -1,0 +1,18 @@
+{
+    "theaterList": [
+        {
+            "id": "",
+            "name":"",
+            "timings":["", "", "", ""],
+            "seats": 0,
+            "location":""
+        },
+        {
+            "id": "",
+            "name":"",
+            "timings":["", "", "", ""],
+            "seats": 0,
+            "location":""
+        }
+    ]
+}
