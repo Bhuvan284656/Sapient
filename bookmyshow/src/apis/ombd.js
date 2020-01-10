@@ -1,4 +1,7 @@
 import axios from "axios";
-const url = "http://www.omdbapi.com/?s=Batman&page=2&apikey=8d9f24de";
 
-export const movieList = axios.get(url);
+const url = "http://www.omdbapi.com/?page=2&apikey=8d9f24de";
+
+export const movieList = (search="Batman") => axios.get(`${url}&s=${search}`);
+
+export const movie = (id) => axios.get(`${url}&i=${id}`);

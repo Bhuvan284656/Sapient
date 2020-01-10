@@ -1,14 +1,14 @@
 import React, { Component } from "react";
+import "./header.css"
 
 class Header extends Component {
-  state = {
-    movies: []
-  };
 
   componentDidMount() {}
 
   render() {
-    return <div></div>;
+    return (<header className="App-header">
+             <h1>Book My Show</h1>
+            </header>);
   }
 }
 
