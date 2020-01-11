@@ -24,9 +24,13 @@ class Theaters extends Component {
     const {theaterList, iserror, errorMessage} = this.state;
     let list = null;
     let errorDiv = null;
+    const movieID = this.props.match.params.id;
+    const url = this.props.match.url;
 
     if(theaterList && !iserror)
-      list = theaterList.map(data => <Theater key={data.id} {...data}></Theater>)
+      list = theaterList.map(data => (
+        <Theater key={data.id} {...data} movieID={movieID} url={url}></Theater>
+      ));
 
     if(iserror)
       errorDiv = <div className="errorMessage">{errorMessage}</div>
@@ -35,7 +39,7 @@ class Theaters extends Component {
       errorDiv
     ) : (
       <Fragment>
-        <SeletedMovie id={this.props.match.params.id}></SeletedMovie>
+        {/* <SeletedMovie id={movieID}></SeletedMovie> */}
         <div className="theaterList">{list}</div>
       </Fragment>
     );

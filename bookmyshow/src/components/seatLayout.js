@@ -7,8 +7,18 @@ class SeatLayout extends Component {
 
   componentDidMount() {}
 
-  render() {
-    return <div></div>;
+  render() {    
+    const movieID = this.props.match.params.id;
+    const theaterID = this.props.match.params.theaterID;
+    const theaterTiming = this.props.match.params.time;
+
+    const rows = 10;
+    const columns = 30;
+
+      
+
+
+    return <div>Seat LayOut</div>;
   }
 }
 
