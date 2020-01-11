@@ -3,7 +3,6 @@ import TheaterListData from "../temp.json";
 import Theater from "./theaterData";
 import "./theaters.css";
 import SeletedMovie from "./selectedMovie";
-import { isError } from "util";
 
 class Theaters extends Component {
   state = {
