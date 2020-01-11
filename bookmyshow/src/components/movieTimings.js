@@ -1,15 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
+import "./movieTimings.css";
 
-class MovieTimings extends Component {
-  state = {
-    movies: []
-  };
+const movieTimings = props => {
+  const { timings } = props;
 
-  componentDidMount() {}
+  const value = timings.map(time => <div className="movietime">{time}</div>);
+  return value;
+};
 
-  render() {
-    return <div></div>;
-  }
-}
-
-export default MovieTimings;
+export default movieTimings;

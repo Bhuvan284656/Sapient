@@ -1,3 +1,17 @@
 .theater{
-    border: 1px solid silver;
+    border-bottom: 2px solid silver;
+    margin: 5px;
+    width: 99%;
+    padding: 4px;
+}
+.theaterName, .theaterTimings{
+    display: inline-block;
+}
+
+.theaterName{
+    width: 30%;
+}
+
+.theaterTimings{
+    width: 60%;
 }

@@ -11,7 +11,7 @@ class Movies extends Component {
   };
 
   componentDidMount() {
-    movieList
+    movieList()
       .then(({ data }) => {
         this.setState({
           movies: data.Search,

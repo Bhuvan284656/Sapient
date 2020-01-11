@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import TheaterListData from "../temp.json";
 import Theater from "./theaterData";
 import "./theaters.css";
+import SeletedMovie from "./selectedMovie";
+import { isError } from "util";
 
 class Theaters extends Component {
   state = {
@@ -22,14 +24,22 @@ class Theaters extends Component {
   render() {
     const {theaterList, iserror, errorMessage} = this.state;
     let list = null;
+    let errorDiv = null;
 
     if(theaterList && !iserror)
       list = theaterList.map(data => <Theater key={data.id} {...data}></Theater>)
 
     if(iserror)
-      list = <div className="errorMessage">{errorMessage}</div>
+      errorDiv = <div className="errorMessage">{errorMessage}</div>
 
-    return <div className="theaterList">{list}</div>;
+    return iserror ? (
+      errorDiv
+    ) : (
+      <Fragment>
+        <SeletedMovie id={this.props.match.params.id}></SeletedMovie>
+        <div className="theaterList">{list}</div>
+      </Fragment>
+    );
   }
 }
 

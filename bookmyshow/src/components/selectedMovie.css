@@ -1,0 +1,17 @@
+.selectedMovie{
+    display: table;
+    border: 1px solid silver;
+    width: 99%;
+    margin: 5px;
+    max-height: 300px;
+}
+
+.movieImage, .movieTitle{
+    display: table-cell;
+    float: left;
+    max-height: 300px;
+}
+
+.movieTitle{
+margin-left: 5px;
+}
