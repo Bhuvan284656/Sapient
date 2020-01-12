@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import "./seatLayout.css";
 import Seat from "./seat";
+import { connect } from "react-redux";
+import { ADD_SEAT, REMOVE_SEAT } from "../store/actions";
 
 class SeatLayout extends Component {
-  state = {
-    movies: []
+  onSeatSelect = (seatNo, isSeatSeleted) => {
+    if (isSeatSeleted)
+      this.props.dispatch({ type: REMOVE_SEAT, value: seatNo });
+    else this.props.dispatch({ type: ADD_SEAT, value: seatNo });
   };
-
-  componentDidMount() {
-
-  }
 
   render() {
     // const movieID = this.props.match.params.id;
@@ -55,27 +55,44 @@ class SeatLayout extends Component {
       "20"
     ];
 
+    let selectedSeats = this.props.seats;
+
+    if (!selectedSeats) selectedSeats = [];
     const layout = rows.map(val => (
       <tr key={val}>
         <td>{val}</td>
-        {columns.map(col => (
-          <td key={col}>
-            <Seat key={col} row={val} col={col}>
-              {col}
-            </Seat>
-          </td>
-        ))}
+        {columns.map(col => {
+          const seatNo = val + "-" + col;
+          const isSeatSeleted = selectedSeats.indexOf(seatNo) > -1;
+          return (
+            <td key={col}>
+              <Seat
+                isSelected={isSeatSeleted}
+                onSeatSelect={() => this.onSeatSelect(seatNo, isSeatSeleted)}
+              >
+                {col}
+              </Seat>
+            </td>
+          );
+        })}
       </tr>
     ));
-
+    // if(this.props.seats)
+    //     console.log(this.props.seats.join(", "));
     return (
       <div style={{ textAlign: "center" }}>
         <div className="seatLayout">
-          <table><tbody>{layout}</tbody></table>
+          <table>
+            <tbody>{layout}</tbody>
+          </table>
         </div>
       </div>
     );
   }
 }
 
-export default SeatLayout;
+const manageStateToProps = state => {
+  return { seats: state.seats };
+};
+
+export default connect(manageStateToProps)(SeatLayout);

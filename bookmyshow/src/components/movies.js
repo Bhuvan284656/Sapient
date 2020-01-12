@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { movieList } from "../apis/ombd";
 import Movie from "./movieData";
 import "./movies.css"
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   state = {
@@ -26,7 +27,11 @@ class Movies extends Component {
     let list = null;
 
     if (movies && !iserror)
-      list = movies.map(val => <Movie key={val.imdbID} {...val}></Movie>);
+      list = movies.map(val => (
+        <Link key={val.imdbID} to={`/Theaters/${val.imdbID}`}>
+          <Movie {...val}></Movie>
+        </Link>
+      ));
 
     if(iserror)
       list = <div className="errorMessage">{error}</div>
