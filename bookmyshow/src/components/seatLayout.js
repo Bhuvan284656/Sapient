@@ -12,9 +12,9 @@ class SeatLayout extends Component {
   }
 
   render() {
-    const movieID = this.props.match.params.id;
-    const theaterID = this.props.match.params.theaterID;
-    const theaterTiming = this.props.match.params.time;
+    // const movieID = this.props.match.params.id;
+    // const theaterID = this.props.match.params.theaterID;
+    // const theaterTiming = this.props.match.params.time;
 
     const rows = [
       "A",

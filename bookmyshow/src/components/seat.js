@@ -11,10 +11,11 @@ class seat extends Component {
   };
 
   render() {
+    console.log(this.props);
     const seatNo = this.props.row + "-" + this.props.column;
-    const isSeatSeleted = false;
-    if (this.props.selectedSeats) {
-      const index = this.props.selectedSeats.indexof(seatNo);
+    let isSeatSeleted = false;
+    if (this.props.seats) {
+      const index = this.props.seats.indexof(seatNo);
       isSeatSeleted = index > 0;
     }
     return (
@@ -32,7 +33,7 @@ class seat extends Component {
 
 const manageStatetoPops = state => {
   console.log(state);
-  return { selectedSeats: state };
+  return { seats: state.seats };
 };
 
 export default connect(manageStatetoPops)(seat);

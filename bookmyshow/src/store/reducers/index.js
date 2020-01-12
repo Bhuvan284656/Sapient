@@ -6,13 +6,15 @@ const initialState = {
 
 const Add_SeatData = (action, state) => {
   let seats = state.seats;
+  if(!seats) seats = [];
   const count = state.count;
   seats = [...seats, action.value];
-  return { ...state, count: ++count, seats: seats };
+  return { ...state, count: count + 1, seats: seats };
 };
 
 const Remove_SeatData = (action, state) => {
   let seats = state.seats;
+  if (!seats) seats = [];
   let count = state.count;
   if (count > 0) --count;
   var index = seats.indexOf(action.value);
@@ -27,8 +29,9 @@ const SeatCounts = (state = initialState, action) => {
       return Add_SeatData(action, state);
     case REMOVE_SEAT:
       return Remove_SeatData(action, state);
+    default:
+      return state;
   }
-  return state;
 };
 
 export default SeatCounts;
