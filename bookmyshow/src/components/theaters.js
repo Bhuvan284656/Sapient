@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import TheaterListData from "../temp.json";
 import Theater from "./theaterData";
 import "./theaters.css";
-import SeletedMovie from "./selectedMovie";
 
 class Theaters extends Component {
   state = {
@@ -39,7 +38,6 @@ class Theaters extends Component {
       errorDiv
     ) : (
       <Fragment>
-        {/* <SeletedMovie id={movieID}></SeletedMovie> */}
         <div className="theaterList">{list}</div>
       </Fragment>
     );

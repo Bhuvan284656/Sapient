@@ -1,9 +1,10 @@
 .selectedMovie{
     display: table;
     border: 1px solid silver;
-    width: 99%;
+    width: 98%;
     margin: 5px;
     max-height: 300px;
+    margin-right: 12px;
 }
 
 .movieImage, .movieTitle{
