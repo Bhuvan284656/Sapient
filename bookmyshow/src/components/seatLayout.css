@@ -9,3 +9,8 @@
     width: 100%;
     text-align: center;
 }
+
+.buttonContainer{
+    float: right;
+    padding-right: 30px;
+}

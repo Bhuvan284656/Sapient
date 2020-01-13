@@ -1,20 +1,50 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./seatLayout.css";
 import Seat from "./seat";
 import { connect } from "react-redux";
 import { ADD_SEAT, REMOVE_SEAT } from "../store/actions";
+import TheaterData from "./theaterData";
+import Theaters from "../temp.json"
+import Button from "./common/button";
+import Alert from "./alert";
 
 class SeatLayout extends Component {
+  state = {
+    Theater: {},
+    showconfirmMsg: false
+  }
   onSeatSelect = (seatNo, isSeatSeleted) => {
     if (isSeatSeleted)
       this.props.dispatch({ type: REMOVE_SEAT, value: seatNo });
     else this.props.dispatch({ type: ADD_SEAT, value: seatNo });
   };
 
+  componentDidMount() {
+    const theaterID = this.props.match.params.theaterID;
+    let Theater = null
+    if (Theaters.theaterList)
+      Theater = Theaters.theaterList.find(val => val.id === theaterID);
+    this.setState({ Theater });
+  }
+
+  onConfirmClick = () =>{
+    let message = "";
+    if(this.props.seats && this.props.seats.length > 0)
+      message = "Booking Confirmed Seats are " + this.props.seats.join(", ");
+    else  
+      message = "Please select atleast one seat.";
+    this.setState({showconfirmMsg:true, message: message});
+  }
+
+  onCloseAlert =() =>{
+    let message = "";
+    this.setState({showconfirmMsg: false, message: message});
+  }
+
   render() {
     // const movieID = this.props.match.params.id;
     // const theaterID = this.props.match.params.theaterID;
-    // const theaterTiming = this.props.match.params.time;
+    const movieTiming = this.props.match.params.time;
 
     const rows = [
       "A",
@@ -80,13 +110,20 @@ class SeatLayout extends Component {
     // if(this.props.seats)
     //     console.log(this.props.seats.join(", "));
     return (
-      <div style={{ textAlign: "center" }}>
-        <div className="seatLayout">
-          <table>
-            <tbody>{layout}</tbody>
-          </table>
+      <Fragment>
+        <div><TheaterData hideMovieTimings movieTiming={movieTiming} {...this.state.Theater} ></TheaterData></div>
+        <div className="buttonContainer">{selectedSeats.length>0? <Button onClick={this.onConfirmClick}>Confirm</Button>: null}</div>
+        <div style={{ textAlign: "center" }}>
+          <div className="seatLayout">
+            <table>
+              <tbody>{layout}</tbody>
+            </table>
+          </div>
         </div>
-      </div>
+        {this.state.showconfirmMsg? 
+            <Alert message={this.state.message} header={"Booking Confirmation"} ooCloseClick={this.onCloseAlert}></Alert>
+            : null}
+      </Fragment>
     );
   }
 }

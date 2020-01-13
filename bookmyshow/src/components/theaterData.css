@@ -1,10 +1,10 @@
 .theater{
     border-bottom: 2px solid silver;
     margin: 5px;
-    width: 99%;
+    width: 98%;
     padding: 4px;
 }
-.theaterName, .theaterTimings{
+.theaterName, .theaterTimings, .seletedMovieTime{
     display: inline-block;
 }
 
@@ -14,4 +14,8 @@
 
 .theaterTimings{
     width: 60%;
+}
+
+.seletedMovieTime{
+
 }
