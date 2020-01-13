@@ -10,7 +10,6 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header></Header>
-
         <Switch>
           <Route path="/" exact component={Movies}></Route>
           <Route path="/Theaters/:id" component={Theaters}></Route>
